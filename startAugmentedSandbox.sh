@@ -1,7 +1,7 @@
 #!/bin/sh
 # 
 # Author: Malamaker (J.Malavolti) Created: 2016-03-23 Last Updated: 2016-03-24
-#
+# fixed paths GW 2017-05-24 to suit sandbox 2.3 / kinect 2.8 / vrui 4.2
 
 echo "Welcome to the Augmented Reality Sandbox Configuration and Start Menu"
 
@@ -16,23 +16,24 @@ while true; do
 
 	case "$userSelection" in
 		1) 	echo "Starting Kinect Sensor Alignment tool"
-			cd ~/src/SARndbox-1.6
-			~/Vrui-3.1/bin/RawKinectViewer -compress 0
+			cd /usr/local
+			./bin/RawKinectViewer -compress 0
 			;;
 			
 		2)	echo "Starting Projector Alignment tool"
-			~/Vrui-3.1/bin/XBackground
+			cd /usr/local
+			./bin/XBackground
 			;;
 			
 		3)	echo "Starting calibration tool"
 			read -p "Enter projector witdth: " calWidth
 			read -p "Enter projector height: " calHeight
-			cd ~/src/SARndbox-1.6
+			cd ~/src/SARndbox-2.3
 			./bin/CalibrateProjector -s $calWidth $calHeight
 			;;
 
 		4)	echo "Starting AR Sandbox"
-			cd ~/src/SARndbox-1.6
+			cd ~/src/SARndbox-2.3
 			./bin/SARndbox -uhm -fpv
 			;;
 
